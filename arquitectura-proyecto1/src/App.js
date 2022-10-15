@@ -1,9 +1,9 @@
 import './App.css';
-import { SimplePrecision } from './SimplePrecision';
-function App() {
+import { SimplePrecision } from './componets/SimplePrecision';
+const App=()=> {
   return (
     <div className="App">
-      <SimplePrecision />
+      < SimplePrecision/>
     </div>
   );
 }
