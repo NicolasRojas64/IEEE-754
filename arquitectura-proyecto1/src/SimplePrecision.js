@@ -46,6 +46,7 @@ function SimplePresicion(){
         let denormalized = denormalize();
         let mantissa = denormalized.slice(2);
         console.log(23 - (mantissa.length))
+        console.log(mantissa.length <= 23)
         if(mantissa.length <= 23){
             for(let i; i <= (23 - (mantissa.length)); i++){
                 mantissa.concat("0");
