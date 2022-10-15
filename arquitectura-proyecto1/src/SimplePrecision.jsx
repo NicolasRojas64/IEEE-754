@@ -1,9 +1,13 @@
-function SimplePresicion(){
-    let number = 951.35;
+import React, { useState } from 'react'
+
+export const SimplePrecision = () => {
+    const number = 951.35;
+    
     //let number = 71.3125;
-    let [integerPart, decimalPart] = number.toString().split(".")
-    let binaryNumber = number.toString(2);
-    let [binaryIntegerPart, binaryDecimalPart] = binaryNumber.split(".");
+    const [integerPart, decimalPart] =  number.toString().split(".")
+    const binaryNumber = number.toString(2);
+    const  [binaryIntegerPart, binaryDecimalPart] = binaryNumber.split(".");
+
 
     function denormalize(){
         let corrimiento;
@@ -14,7 +18,7 @@ function SimplePresicion(){
         return corrimiento;
     }
 
-    function calculateExponent(){
+    const calculateExponent =()=>{
         let exp;
         if(number > 0){
             let index = binaryNumber.indexOf(".");
@@ -23,7 +27,7 @@ function SimplePresicion(){
         return exp;
     }
 
-    function exponent(){
+    const  exponent = ()=>{
         let exp;
         if(number > 0){
             let index = binaryNumber.indexOf(".");
@@ -32,7 +36,7 @@ function SimplePresicion(){
         return exp;
     }
 
-   function calculateSign(){
+   const  calculateSign= ()=>{
         let s;
         if(number >= 0){
             s = 0;
@@ -42,7 +46,7 @@ function SimplePresicion(){
         return s;
    }
 
-   function mantissa(){
+   const  mantissa = ()=>{
         let denormalized = denormalize();
         let mantissa = denormalized.slice(2);
         console.log(23 - (mantissa.length))
@@ -55,7 +59,9 @@ function SimplePresicion(){
         return mantissa;
    }
 
-    return(
+
+  return (
+    
         <div>
             
             <h2>Número a convertir: {number}</h2>
@@ -77,7 +83,7 @@ function SimplePresicion(){
 
             <h2>Conversión de presición simple a hexadecimal: </h2>
         </div>
-    );
+  )
 }
 
-export default SimplePresicion;
+

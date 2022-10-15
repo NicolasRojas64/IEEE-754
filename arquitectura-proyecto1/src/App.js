@@ -1,9 +1,9 @@
 import './App.css';
-import SimplePresicion from './SimplePrecision';
+import { SimplePrecision } from './SimplePrecision';
 function App() {
   return (
     <div className="App">
-      <SimplePresicion />
+      <SimplePrecision />
     </div>
   );
 }
