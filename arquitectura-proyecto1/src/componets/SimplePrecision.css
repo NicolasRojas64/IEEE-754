@@ -1,0 +1,141 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.conversor{
+    background-color: rgb(66, 55, 223);
+    
+}
+.conversor-simple{
+    margin-left: 7%;
+    margin-top: 20px;
+    border-radius: 2%;
+    background-color: #F5F5F5;
+    width: 40%;
+    height: 700px;
+    margin-bottom: 40px;
+    float: left;
+    border: 1px solid black;
+    
+}
+.conversor-doble{
+    background-color: #5551ff;
+    border-radius: 2%;
+    margin-top: 20px;
+
+    background-color: #F5F5F5;
+    width: 40%;
+    height: 700px;
+    margin-right: 10%;
+    margin-bottom: 40px;
+    float: right;
+    border: 1px solid black;   
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+h1{
+    display: list-item;
+    margin: 10px 0px 30px 35%;
+    text-decoration: none;
+}
+label{
+    margin-top: 50px;
+    margin-left: 7%;
+
+}
+.inputs{
+    margin-bottom: 20px;
+}
+input{
+    margin-top:50px;
+    margin-left: 7%;
+    height: 30px;
+}
+.input-text{
+    border: 3px solid #000;
+border-radius: 5px;
+height: 30px;
+line-height: normal;
+color: #282828;
+width: 32%;
+box-sizing: border-box;
+user-select: auto;
+font-size: 16px;
+padding: 0 6px;
+padding-left: 12px;
+
+}
+.input-text:focus{
+   
+    border: 3px solid #5551ff;
+}
+h3{
+    pad: 3px;
+    margin-left: 5%;
+    border-radius: 7px;
+    border:1px solid gray;
+    width: 32%;
+    margin-top: 15px;
+    display: inline-block;
+}
+h4{
+    display: inline-block;
+    margin-left: 5%;
+    width: 43% ;
+    border-radius: 7px;
+    border:1px solid gray;  
+    height: 30px;  
+}
+h5{
+    border-radius: 7px;
+    border:1px solid gray; 
+    display: inline-block;
+
+
+}
+
+
+.button-44 {
+
+  background: #e62143;
+  border-radius: 11px;
+  box-sizing: border-box;
+  height: 40px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;
+  font-size: 1.15em;
+  margin-left: 11%;
+  margin-right: 5px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 33.4929px;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+  text-underline-offset: 1px;
+  transition: all .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  word-break: break-word;
+  border: 0;
+}
+
+.button-44:active,
+.button-44:focus {
+  border-bottom-style: none;
+  border-color: #dadada;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 3px inset;
+  outline: 0;
+}
+
+.button-44:hover {
+  border-bottom-style: none;
+  border-color: #dadada;
+}
