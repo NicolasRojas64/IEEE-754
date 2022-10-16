@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const SimplePrecision = () => {
+export const DoblePrecision = () => {
     //const number = 951.35;
     //const number = -71.3125;
     const number = 0.15;
@@ -29,18 +29,18 @@ export const SimplePrecision = () => {
             corrimiento = a.slice(0,1) + "." + a.slice(1)
         }
         
-        return corrimiento.substring(0,30);
+        return corrimiento.substring(0,60);
     }
 
     const calculateExponent =()=>{
         let exp;
         if(integerPart == 0){
             let index = positions();
-            exp = "127 - "+ index + " = " + (127 - index) + " (10) --> "+ (127 - index).toString(2) + " (2)";
+            exp = "1023 - "+ index + " = " + (1023 - index) + " (10) --> "+ (1023 - index).toString(2) + " (2)";
         }
         else{
             let index = binaryNumber.indexOf(".");
-            exp = "127 + "+ (index-1) + " = " + (127 + (index - 1)) + " (10) --> "+ (127 + (index - 1)).toString(2) + " (2)";
+            exp = "1023 + "+ (index-1) + " = " + (1023 + (index - 1)) + " (10) --> "+ (1023 + (index - 1)).toString(2) + " (2)";
         }
         return exp;
     }
@@ -49,15 +49,15 @@ export const SimplePrecision = () => {
         let exp;
         if(integerPart == 0){
             let index = positions()
-            exp = (127 - index).toString(2);
+            exp = (1023 - index).toString(2);
         }else{
             let index = binaryNumber.indexOf(".");
-            exp = (127 + (index - 1)).toString(2);
+            exp = (1023 + (index - 1)).toString(2);
         }
 
         let ceros = "";
-        if(exp.length < 8){
-            for(let i = 0; i < (8 - exp.length); i++){
+        if(exp.length < 11){
+            for(let i = 0; i < (11 - exp.length); i++){
                 ceros = ceros.concat("0");
             }
             exp = ceros.concat(exp);
@@ -66,32 +66,32 @@ export const SimplePrecision = () => {
         return exp;
     }
 
-   const sign= ()=>{
+   const  sign= ()=>{
         let s;
         number >= 0 ? s = 0 : s = 1;
         return s;
    }
 
    const mantissa = () => {
-        let denormalized = denormalize();
-        let m = denormalized.slice(2);
-        let difference = (23 - (m.length));
-        if(m.length < 23){
-            for(let i = 0; i < difference; i++){
-                m+="0";
-            }
+    let denormalized = denormalize();
+    let m = denormalized.slice(2);
+    let difference = (52 - (m.length));
+    if(m.length < 52){
+        for(let i = 0; i < difference; i++){
+            m+="0";
         }
+    }
 
-        if(m.length > 23){
-            m = m.substring(0,23)
-        }
-        return m;
+    if(m.length > 52){
+        m = m.substring(0,52)
+    }
+    return m;
     }   
 
     const binarylArray = () => {
         let binArray = [];
         let h = sign() + exponent() + mantissa();
-        for(let i = 0; i < 8; i++){
+        for(let i = 0; i < 16; i++){
             binArray.push(h.substring(i*4, (i*4) + 4))
         }
         return binArray;
@@ -117,20 +117,20 @@ export const SimplePrecision = () => {
 
   return (
     
-        <div className='general-simple'>
+        <div className='general-doble'>
             
             <h2>Número a convertir: {number}</h2>
             <h2>Parte entera en binario: {integerPart + " (10) --> " + binaryIntegerPart + " (2)"}</h2>
 
-            <h2>Parte decimal en binario: {decimalPart + " (10) --> " + binaryDecimalPart.substring(0,30) + " (2)"}</h2>
+            <h2>Parte decimal en binario: {decimalPart + " (10) --> " + binaryDecimalPart.substring(0,70) + " (2)"}</h2>
 
-            <h2>Unión de parte entera(2) y parte decimal(2): {binaryIntegerPart + "." + binaryDecimalPart.substring(0,30)}</h2>
+            <h2>Unión de parte entera(2) y parte decimal(2): {binaryIntegerPart + "." + binaryDecimalPart.substring(0,70)}</h2>
 
             <h2>Corrimiento hacia el uno más cercano: {denormalize()}</h2>
 
             <h2>Exponente en binario: {calculateExponent()}</h2>
 
-            <h2>Conversión a presición simple (32 bits): </h2>
+            <h2>Conversión a presición doble (64 bits): </h2>
 
             <div className='table'>
                 <table>
@@ -178,5 +178,3 @@ export const SimplePrecision = () => {
         </div>
   )
 }
-
-
