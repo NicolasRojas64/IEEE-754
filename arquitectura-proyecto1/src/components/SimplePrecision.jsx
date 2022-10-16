@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 
 export const SimplePrecision = () => {
-    //const number = 951.35;
-    //const number = -71.3125;
-    const number = 0.15;
-    const [integerPart, decimalPart] =  Math.abs(number).toString().split(".")
-    const binaryNumber = Math.abs(number).toString(2);
-    const  [binaryIntegerPart, binaryDecimalPart] = binaryNumber.split(".");
+    //const number = -951.35;
+    const number = 71.3125;
+    //const number = 0.15;
+
+    const [integerPartSplit, decimalPartSplit] =  Math.abs(number).toString().split(".")
+    const [binaryNumber, setbinaryNumber] = useState(Math.abs(number).toString(2))
+    const  [binaryIntegerPartSplit, binaryDecimalPartSplit] = binaryNumber.split(".");
+    const [integerPart, setintegerPart] = useState(integerPartSplit)
+    const [decimalPart, setdecimalPart] = useState(decimalPartSplit)
+    const [binaryIntegerPart, setbinaryIntegerPart] = useState(binaryIntegerPartSplit)
+    const [binaryDecimalPart, setbinaryDecimalPart] = useState(binaryDecimalPartSplit)
 
     const positions = () => {
         let count = 0;

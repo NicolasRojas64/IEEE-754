@@ -1,6 +1,6 @@
 import './App.css';
-import { SimplePrecision } from './SimplePrecision';
-import { DoblePrecision} from "./DoblePrecision";
+import { SimplePrecision } from './components/SimplePrecision';
+import { DoblePrecision} from "./components/DoblePrecision";
 function App() {
   return (
     
