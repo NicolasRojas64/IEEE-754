@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 export const SimplePrecision = () => {
-    //const number = -951.35;
-    const number = 71.3125;
+    const number = 951.35;
+    //const number = 71.3125;
     //const number = 0.15;
 
     const [integerPartSplit, decimalPartSplit] =  Math.abs(number).toString().split(".")

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
 export const DoblePrecision = () => {
-    //const number = 951.35;
+    const number = 951.35;
     //const number = -71.3125;
-    const number = 0.15;
+    //const number = 0.15;
     const [integerPart, decimalPart] =  Math.abs(number).toString().split(".")
     const binaryNumber = Math.abs(number).toString(2);
     const  [binaryIntegerPart, binaryDecimalPart] = binaryNumber.split(".");
