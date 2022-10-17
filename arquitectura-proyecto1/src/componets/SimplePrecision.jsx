@@ -54,6 +54,21 @@ export const SimplePrecision = () => {
         return corrimiento.substring(0,30);
     }
 
+    const  denormalizeDouble=()=>{
+        let corrimiento;
+        if(integerPart ==="0"){
+            let index = positions();
+            let a = binaryNumber.replace(".","");
+            corrimiento = a.slice(index, index+1) + "." + a.slice(index+1)
+        }
+        else{
+            let a = binaryNumber.replace(".","");
+            corrimiento = a.slice(0,1) + "." + a.slice(1)
+        }
+        
+        return corrimiento.substring(0,60);
+    }
+
     const calculateExponent =()=>{
         let exp;
         if(integerPart === "0"){
@@ -126,7 +141,7 @@ export const SimplePrecision = () => {
         return s;
    }
    const mantissaDouble = () => {
-    let denormalized = denormalize();
+    let denormalized = denormalizeDouble();
     let m = denormalized.slice(2);
     let difference = (52 - (m.length));
     if(m.length < 52){
@@ -182,8 +197,34 @@ const hexadecimalNumber = () => {
     }
 
     return [...hexa];
-}
+    }
 
+    const binarylArrayDouble = () => {
+        let binArray = [];
+        let h = sign() + exponentDouble() + mantissaDouble();
+        for(let i = 0; i < 16; i++){
+            binArray.push(h.substring(i*4, (i*4) + 4))
+        }
+        return binArray;
+    }
+    
+    const hexadecimalArrayDouble = () =>{
+        let hexaArray = [];
+        let binArray = binarylArrayDouble();
+        for(let i = 0; i < binArray.length; i++){
+            hexaArray.push(parseInt(binArray[i], 2).toString(16).toUpperCase())
+        }
+        return hexaArray;
+    }
+    
+    const hexadecimalNumberDouble = () => {
+        let hexa = "";
+        let h = hexadecimalArrayDouble();
+        for(let i = 0; i < h.length; i++){
+            hexa = hexa.concat(h[i])
+        }
+        return hexa;
+    }
 
   return (
     <>
@@ -233,14 +274,14 @@ const hexadecimalNumber = () => {
                 <thead>
 
                 <tr>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
+                    <th>{binarylArray()[0]}</th>
+                    <th>{binarylArray()[1]}</th>
+                    <th>{binarylArray()[2]}</th>
+                    <th>{binarylArray()[3]}</th>
+                    <th>{binarylArray()[4]}</th>
+                    <th>{binarylArray()[5]}</th>
+                    <th>{binarylArray()[6]}</th>
+                    <th>{binarylArray()[7]}</th>
 
                 </tr>
                 </thead>
@@ -305,34 +346,54 @@ const hexadecimalNumber = () => {
                 <thead>
 
                 <tr>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
+                    <th>{binarylArrayDouble()[0]}</th>
+                    <th>{binarylArrayDouble()[1]}</th>
+                    <th>{binarylArrayDouble()[2]}</th>
+                    <th>{binarylArrayDouble()[3]}</th>
+                    <th>{binarylArrayDouble()[4]}</th>
+                    <th>{binarylArrayDouble()[5]}</th>
+                    <th>{binarylArrayDouble()[6]}</th>
+                    <th>{binarylArrayDouble()[7]}</th>
+                    <th>{binarylArrayDouble()[9]}</th>
+                    <th>{binarylArrayDouble()[10]}</th>
+                    <th>{binarylArrayDouble()[11]}</th>
+                    <th>{binarylArrayDouble()[12]}</th>
+                    <th>{binarylArrayDouble()[13]}</th>
+                    <th>{binarylArrayDouble()[14]}</th>
+                    <th>{binarylArrayDouble()[15]}</th>
+               
+
+
+
 
                 </tr>
                 </thead>
                 <tbody>
 
                 <tr>
-                <td>{hexadecimalNumber()[0]}</td>
-                    <td>{hexadecimalNumber()[1]}</td>
-                    <td>{hexadecimalNumber()[2]}</td>
-                    <td>{hexadecimalNumber()[3]}</td>
-                    <td>{hexadecimalNumber()[4]}</td>
-                    <td>{hexadecimalNumber()[5]}</td>
-                    <td>{hexadecimalNumber()[6]}</td>
-                    <td>{hexadecimalNumber()[7]}</td>
+                    <td>{hexadecimalArrayDouble()[0]}</td>
+                    <td>{hexadecimalArrayDouble()[1]}</td>
+                    <td>{hexadecimalArrayDouble()[2]}</td>
+                    <td>{hexadecimalArrayDouble()[3]}</td>
+                    <td>{hexadecimalArrayDouble()[4]}</td>
+                    <td>{hexadecimalArrayDouble()[5]}</td>
+                    <td>{hexadecimalArrayDouble()[6]}</td>
+                    <td>{hexadecimalArrayDouble()[8]}</td>
+                    <td>{hexadecimalArrayDouble()[9]}</td>
+                    <td>{hexadecimalArrayDouble()[10]}</td>
+                    <td>{hexadecimalArrayDouble()[11]}</td>
+                    <td>{hexadecimalArrayDouble()[12]}</td>
+                    <td>{hexadecimalArrayDouble()[13]}</td>
+                    <td>{hexadecimalArrayDouble()[14]}</td>
+                    <td>{hexadecimalArrayDouble()[15]}</td>
+
+
 
                 </tr>
                 </tbody>
             </table>
             <h3>Resultado</h3>
-            <h3>{hexadecimalNumber()}</h3>
+            <h3>{hexadecimalNumberDouble()}</h3>
 
 
 
@@ -341,7 +402,3 @@ const hexadecimalNumber = () => {
         </>
     )
 }
-
-
-
-
