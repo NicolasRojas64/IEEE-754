@@ -1,15 +1,10 @@
-import './App.css';
-import { SimplePrecision } from './components/SimplePrecision';
-import { DoblePrecision} from "./components/DoblePrecision";
+import Conversor from "./Conversor";
 
 const App=()=> {
   return (
-    
     <div className="App">
-      <SimplePrecision />
-      <DoblePrecision />
+      < Conversor/>
     </div>
-  
   );
 }
 
