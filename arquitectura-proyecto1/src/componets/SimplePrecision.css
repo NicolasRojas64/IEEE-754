@@ -13,7 +13,7 @@
     border-radius: 2%;
     background-color: #F5F5F5;
     width: 40%;
-    height: 1100px;
+    height: 1300px;
     margin-bottom: 40px;
     float: left;
     border: 1px solid black;
@@ -23,11 +23,10 @@
     background-color: #5551ff;
     border-radius: 2%;
     margin-top: 20px;
-
     background-color: #F5F5F5;
-    width: 40%;
-    height: 1100px;
-    margin-right: 10%;
+    width: 43%;
+    height: 1300px;
+    margin-right: 8%;
     margin-bottom: 40px;
     float: right;
     border: 1px solid black;   
@@ -39,10 +38,13 @@ hr{
     margin-left: 30%;
     text-align: center;
     border: none;
+    max-width: 50x;
 }
 h2{
     text-align: center;
     margin-bottom: 20px;
+    max-width: 50x;
+
 }
 h1{
     display: list-item;
@@ -86,16 +88,18 @@ h3{
     border-radius: 7px;
     border:1px solid gray;
     width: 32%;
+    height: 5%;
     margin-top: 15px;
     display: inline-block;
+    width: 40%;
 }
 h4{
     display: inline-block;
     margin-left: 5%;
     width: 43% ;
     border-radius: 7px;
-    border:1px solid gray;  
-    height: 30px;  
+    border:1px solid gray; 
+    overflow: scroll; 
 }
 h5{
     border-radius: 7px;

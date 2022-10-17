@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { DoblePrecision } from './DoblePrecision';
 import './SimplePrecision.css'
-export const SimplePrecision = () => {
-    const [number, setnumber] = useState(0)
+export const DoblePrecision = (numberConvert) => {
+    const [number, setnumber] = useState(numberConvert)
     const binaryNumber = Math.abs(number).toString(2);
     
-
+    console.log(numberConvert)
     const [integerPart, setintegerPart] = useState(0)
     const [decimalPart, setdecimalPart] = useState(0)
     const [binaryIntegerPart, setbinaryIntegerPart] = useState(1)
@@ -17,24 +16,12 @@ export const SimplePrecision = () => {
         setdecimalPart(decimalPartSplit)
         setbinaryIntegerPart(binaryIntegerPartSplit)
         setbinaryDecimalPart(binaryDecimalPartSplit)
-            // setbinaryDecimalPart(binaryDecimalPartSplit)
     }
-    //const positions = () => {
-        // let count = 0;
-        // if(binaryDecimalPart>0){
-        //     let binArray = binaryDecimalPart.split('');
-        //     for(let i = 0; binArray[i] === "0";i++){
-        //         count++;
-        //     }
-        //     return count+1;
-        // }
-        // return 0
-    //}
 
     const positions = () => {
         let count = 0;
         let binArray = binaryDecimalPart.toString().split('');
-        for(let i = 0; binArray[i] === "0";i++){
+        for(let i = 0; binArray[i] == "0";i++){
             count++;
         }
         return count+1;
@@ -42,7 +29,7 @@ export const SimplePrecision = () => {
 
     const  denormalize=()=>{
         let corrimiento;
-        if(integerPart ==="0"){
+        if(integerPart == "0"){
             let index = positions();
             let a = binaryNumber.replace(".","");
             corrimiento = a.slice(index, index+1) + "." + a.slice(index+1)
@@ -52,35 +39,35 @@ export const SimplePrecision = () => {
             corrimiento = a.slice(0,1) + "." + a.slice(1)
         }
         
-        return corrimiento.substring(0,30);
+        return corrimiento.substring(0,60);
     }
 
     const calculateExponent =()=>{
         let exp;
-        if(integerPart === "0"){
+        if(integerPart == "0"){
             let index = positions();
-            exp = "127 - "+ index + " = " + (127 - index) + " (10) --> "+ (127 - index).toString(2) + " (2)";
+            exp = "1023 - "+ index + " = " + (1023 - index) + " (10) --> "+ (1023 - index).toString(2) + " (2)";
         }
         else{
             let index = binaryNumber.indexOf(".");
-            exp = "127 + "+ (index-1) + " = " + (127 + (index - 1)) + " (10) --> "+ (127 + (index - 1)).toString(2) ;
+            exp = "1023 + "+ (index-1) + " = " + (1023 + (index - 1)) + " (10) --> "+ (1023 + (index - 1)).toString(2) + " (2)";
         }
         return exp;
     }
 
     const  exponent = ()=>{
         let exp;
-        if(integerPart === "0"){
+        if(integerPart == "0"){
             let index = positions()
-            exp = (127 - index).toString(2);
+            exp = (1023 - index).toString(2);
         }else{
             let index = binaryNumber.indexOf(".");
-            exp = (127 + (index - 1)).toString(2);
+            exp = (1023 + (index - 1)).toString(2);
         }
 
         let ceros = "";
-        if(exp.length < 8){
-            for(let i = 0; i < (8 - exp.length); i++){
+        if(exp.length < 11){
+            for(let i = 0; i < (11 - exp.length); i++){
                 ceros = ceros.concat("0");
             }
             exp = ceros.concat(exp);
@@ -98,15 +85,15 @@ export const SimplePrecision = () => {
    const mantissa = () => {
     let denormalized = denormalize();
     let m = denormalized.slice(2);
-    let difference = (23 - (m.length));
-    if(m.length < 23){
+    let difference = (52 - (m.length));
+    if(m.length < 52){
         for(let i = 0; i < difference; i++){
             m+="0";
         }
     }
 
-    if(m.length > 23){
-        m = m.substring(0,23)
+    if(m.length > 52){
+        m = m.substring(0,52)
     }
     return m;
 }   
@@ -134,56 +121,49 @@ const hexadecimalNumber = () => {
     for(let i = 0; i < h.length; i++){
         hexa = hexa.concat(h[i])
     }
-
-    return [...hexa];
+    return hexa;
 }
 
 
   return (
     <>
-    <h1>CALCULADORA IEEE754</h1>
-    <div className='inputs'>
-        <input type='number' className='input-text' name='number' value={number} onChange={e => setnumber(e.target.value)}></input>
-        <button className='button-44' onClick={convertNumber}> Convertir </button>
-    </div>
-    <div className='conversor'>
-        <div className='conversor-simple'>
-            <h2>Presicion simple</h2>
+   <div className='conversor-doble'>
+                    <h2>Presicion Doble</h2>
 
-            <h3>Parte entera en binario: {'\n' + integerPart + " (10)"} </h3> <h4>{binaryIntegerPart + "(2)"}</h4>
+                    <h3>Parte entera en binario: {'\n' + integerPart + " (10)"} </h3> <h4>{binaryIntegerPart + " (2)"}</h4>
 
-            <h3>Parte decimal en binario:{decimalPart + " (10)"} </h3>
-            <h4>{binaryDecimalPart.length >= 0 ? binaryDecimalPart.substring(0, 30) : 0 + " (2)"}</h4>
-            <h3>Unión de parte entera(2) y parte decimal(2): </h3>
-            <h4>{binaryDecimalPart.length >= 0 ? binaryIntegerPart + "." + binaryDecimalPart.substring(0, 30) : 0}</h4>
-            <h3>Corrimiento hacia el uno más cercano:</h3>
-            <h4> {denormalize()}</h4>
-            <h3>Exponente en binario: </h3>
-            <h4>{calculateExponent()}</h4>
-            <h3>Conversión a presición simple (32 bits): </h3>
-            <h4>1</h4>
-            <h3>Signo: </h3>
-            <h4>{sign()}</h4>
-            <h3>Exponente: </h3>
-            <h4>{exponent()}</h4>
-            <h3>Mantisa:</h3>
-            <h4> {mantissa()}</h4>
-            <hr />
-            <h3 className='title'>Conversion a presicion Simple 32 Bits</h3>
-            <table className='customTable'>
-                <tr>
-                    <th>Signo</th>
-                    <th>Exponente</th>
-                    <th>Mantiza</th>
-                </tr>
-                <tr>
-                    <td>{sign()}</td>
-                    <td>{exponent()}</td>
-                    <td>{mantissa()}</td>
-                </tr>
-            </table>
-            <h3 className='title'>Conversion a de precision simple a hexadecimal</h3>
-            <table className='customTable'>
+                    <h3>Parte decimal en binario:{decimalPart + " (10)"} </h3>
+                    <h4>{binaryDecimalPart.length >= 0 ? binaryDecimalPart.substring(0, 30) : 0 + " (2)"}</h4>
+                    <h3>Unión de parte entera(2) y parte decimal(2): </h3>
+                    <h4>{binaryDecimalPart.length >= 0 ? binaryIntegerPart + "." + binaryDecimalPart.substring(0, 30) : 0}</h4>
+                    <h3>Corrimiento hacia el uno más cercano:</h3>
+                    <h4> {denormalize()}</h4>
+                    <h3>Exponente en binario: </h3>
+                    <h4>{calculateExponent()}</h4>
+                    <h3>Conversión a presición simple (32 bits): </h3>
+                    <h4>1</h4>
+                    <h3>Signo: </h3>
+                    <h4>{sign()}</h4>
+                    <h3>Exponente: </h3>
+                    <h4>{exponent()}</h4>
+                    <h3>Mantisa:</h3>
+                    <h4> {mantissa()}</h4>
+                    <hr />
+                    <h3 className='title'>Conversion a presicion doble 64 Bits</h3>
+                    <table className='customTable'>
+                        <tr>
+                            <th>Signo</th>
+                            <th>Exponente</th>
+                            <th>Mantiza</th>
+                        </tr>
+                        <tr>
+                            <td>{sign()}</td>
+                            <td>{exponent()}</td>
+                            <td>{mantissa()}</td>
+                        </tr>
+                    </table>
+                    <h3 className='title'>Conversion a de precision simple a hexadecimal</h3>
+                    <table className='customTable'>
                 <thead>
 
                 <tr>
@@ -201,7 +181,7 @@ const hexadecimalNumber = () => {
                 <tbody>
 
                 <tr>
-                    <td>{hexadecimalNumber()[0]}</td>
+                <td>{hexadecimalNumber()[0]}</td>
                     <td>{hexadecimalNumber()[1]}</td>
                     <td>{hexadecimalNumber()[2]}</td>
                     <td>{hexadecimalNumber()[3]}</td>
@@ -219,12 +199,6 @@ const hexadecimalNumber = () => {
 
 
                 </div>
-                <DoblePrecision number/>
-            </div>
-        </>
-    )
+    </>
+  )
 }
-
-
-
-
