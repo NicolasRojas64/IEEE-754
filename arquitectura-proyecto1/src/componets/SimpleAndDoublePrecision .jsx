@@ -1,33 +1,21 @@
 import React, { useContext, useState } from 'react'
-import './SimplePrecision.css'
-export const SimplePrecision = () => {
+import './SimpleAndDoublePrecision.css'
+export const SimpleAndDoublePrecision  = () => {
     const [number, setnumber] = useState(0)
     const binaryNumber = Math.abs(number).toString(2);
     const [integerPart, setintegerPart] = useState(0)
     const [decimalPart, setdecimalPart] = useState(0)
     const [binaryIntegerPart, setbinaryIntegerPart] = useState(1)
     const [binaryDecimalPart, setbinaryDecimalPart] = useState(1)
+
     const convertNumber=()=>{
-        
         const [integerPartSplit, decimalPartSplit] =  Math.abs(number).toString().split(".")
         const [binaryIntegerPartSplit, binaryDecimalPartSplit] = binaryNumber.split(".");
         setintegerPart(integerPartSplit)
         setdecimalPart(decimalPartSplit)
         setbinaryIntegerPart(binaryIntegerPartSplit)
         setbinaryDecimalPart(binaryDecimalPartSplit)
-            // setbinaryDecimalPart(binaryDecimalPartSplit)
     }
-    //const positions = () => {
-        // let count = 0;
-        // if(binaryDecimalPart>0){
-        //     let binArray = binaryDecimalPart.split('');
-        //     for(let i = 0; binArray[i] === "0";i++){
-        //         count++;
-        //     }
-        //     return count+1;
-        // }
-        // return 0
-    //}
 
     const positions = () => {
         let count = 0;

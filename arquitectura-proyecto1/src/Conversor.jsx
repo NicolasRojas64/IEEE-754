@@ -1,11 +1,11 @@
 import React from 'react'
-import { SimplePrecision } from './componets/SimplePrecision'
+import { SimpleAndDoublePrecision } from './componets/SimpleAndDoublePrecision '
 
 const Conversor = () => {
   return (
     <>
         <div>
-            <SimplePrecision/>
+            <SimpleAndDoublePrecision/>
         </div>
     </>
   )
