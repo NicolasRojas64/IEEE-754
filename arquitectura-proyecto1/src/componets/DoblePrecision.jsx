@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './SimplePrecision.css'
 export const DoblePrecision = (numberConvert) => {
     const [number, setnumber] = useState(numberConvert)
     const binaryNumber = Math.abs(number).toString(2);
-    
-    console.log(numberConvert)
     const [integerPart, setintegerPart] = useState(0)
     const [decimalPart, setdecimalPart] = useState(0)
     const [binaryIntegerPart, setbinaryIntegerPart] = useState(1)
